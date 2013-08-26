@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="global" />
+
+
+	<package name="default" namespace="/" extends="struts-default">
+	
+	<action name="inicio" class="com.danielme.tips.struts2.actions.PrimerAction">
+		<result name="success">/jsp/form.jsp</result>
+	</action>
+
+		<action name="primerAction" class="com.danielme.tips.struts2.actions.PrimerAction">
+			<result name="redirect" type="redirectAction">
+			 	<param name="actionName">segundoAction</param>
+			 	<param name="campo1">${campo1}</param>
+			 	<param name="campo2">${campo2}</param>
+			</result>
+			<result name="chain" type="chain">segundoAction</result>
+		</action>
+		
+		<action name="segundoAction" class="com.danielme.tips.struts2.actions.SegundoAction">
+			<result name="success">/jsp/resultado.jsp</result>
+		</action>
+		
+	</package>
+
+</struts>
